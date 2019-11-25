@@ -1,0 +1,16 @@
+{
+    "mahasiswa": [
+        {
+            "NIM": 150402002,
+            "nama": "Rezki Nasrullah",
+            "jk" : "L",
+            "foto": ""
+        },
+        {
+            "NIM": 150402017,
+            "nama": "Annisa Ulfa",
+            "jk" : "P",
+            "foto": ""
+        }
+    ]
+}
