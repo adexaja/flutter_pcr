@@ -21,7 +21,8 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
            radius: 30,
            backgroundImage: 
                 arrayMahasiswa[index].foto != "" && arrayMahasiswa[index].foto != null ? // jika foto tidak kosong dan null
-                FileImage(File(arrayMahasiswa[index].foto)) : 
+                // FileImage(File(arrayMahasiswa[index].foto)) : 
+                NetworkImage(arrayMahasiswa[index].foto) :
                 NetworkImage("https://via.placeholder.com/300/09f/a71000.png"),
          ),
          title: Text(arrayMahasiswa[index].nim.toString()),
