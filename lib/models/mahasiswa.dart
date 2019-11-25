@@ -6,7 +6,7 @@ class Mahasiswa {
      this.foto = foto;
   }
   String nama;
-  int nim;
+  String nim;
   String foto;
   String jk;
 

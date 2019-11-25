@@ -1,13 +1,15 @@
 {
     "mahasiswa": [
         {
-            "NIM": 150402002,
+            "id": 1,
+            "NIM": "150402002",
             "nama": "Rezki Nasrullah",
             "jk" : "L",
             "foto": "https://icon2.kisspng.com/20181127/yjx/kisspng-computer-icons-portable-network-graphics-vector-gr-boy-svg-png-icon-free-download-213136-onlinew-5bfdc697dae477.1717085615433581038966.jpg"
         },
         {
-            "NIM": 150402017,
+            "id": 2,
+            "NIM": "150402017",
             "nama": "Annisa Ulfa",
             "jk" : "P",
             "foto": "https://mpng.pngfly.com/20180810/uzk/kisspng-wedding-marriage-romance-love-couple-bride-svg-png-icon-free-download-574145-onlin-5b6e38d60e8835.0399426515339501660595.jpg"
