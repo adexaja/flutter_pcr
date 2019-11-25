@@ -2,6 +2,9 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_pcr/components/navigationComponent.dart';
+import 'package:flutter_pcr/models/mahasiswa.dart';
+import 'package:flutter_pcr/pages/listMahasiswa.dart';
+import 'package:flutter_pcr/services/mahasiswaService.dart';
 import 'package:image_picker/image_picker.dart';
 
 class TambahMahasiswa extends StatefulWidget {
@@ -59,7 +62,14 @@ class _TambahMahasiswaState extends State<TambahMahasiswa> {
             print("Nama Lengkap : ${namaController.text}");
             print("NIM : ${nimController.text}");
             print("Nama Lengkap : ${imageController.text}");
-            
+            MahahasiswaService.saveMahasiswa(nimController.text, namaController.text, _jenisKelamin, _image.path).then((response){
+               // jika sukses atau gagal bisa dilihat dari response.data
+               // response.data itu adalah array output dari API
+
+               Navigator.push(context, MaterialPageRoute(
+                 builder: (context) => ListMahasiswa()
+               ));
+            });
           }
       },
     );

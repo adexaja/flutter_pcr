@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_pcr/components/navigationComponent.dart';
 import 'package:flutter_pcr/models/mahasiswa.dart';
+import 'package:flutter_pcr/services/mahasiswaService.dart';
 
 class ListMahasiswa extends StatefulWidget {
   ListMahasiswa({Key key}) : super(key: key);
@@ -11,20 +14,18 @@ class ListMahasiswa extends StatefulWidget {
 
 class _ListMahasiswaState extends State<ListMahasiswa> {
   
-  var dataMahasiswa = <Mahasiswa>[
-      new Mahasiswa("150402002", "Rezki Nasrullah", "https://image.shutterstock.com/image-vector/people-icon-260nw-522300817.jpg"),
-      new Mahasiswa("150402017", "Annisa Ulfa", "http://www.handandbeak.com/wp-content/uploads/mi/microsoft-clip-art-vector-people-icon.jpg")
-    ];
-  
-  Widget listTile(context, index){
+  Widget listTile(List<Mahasiswa> arrayMahasiswa, context, index){
      return Card(
        child: ListTile(
          leading: CircleAvatar(
            radius: 30,
-           backgroundImage: NetworkImage(dataMahasiswa[index].image),
+           backgroundImage: 
+                arrayMahasiswa[index].foto != "" && arrayMahasiswa[index].foto != null ? // jika foto tidak kosong dan null
+                FileImage(File(arrayMahasiswa[index].foto)) : 
+                NetworkImage("https://via.placeholder.com/300/09f/a71000.png"),
          ),
-         title: Text(dataMahasiswa[index].nim),
-         subtitle: Text(dataMahasiswa[index].nama),
+         title: Text(arrayMahasiswa[index].nim.toString()),
+         subtitle: Text(arrayMahasiswa[index].nama),
          trailing: Icon(Icons.restore_from_trash),
        ),
      );
@@ -39,9 +40,21 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
         ),
         body: Container(
           margin: EdgeInsets.all(20),
-          child: ListView.builder(
-             itemCount: dataMahasiswa.length,
-             itemBuilder: (context, index) => listTile(context, index),
+          child: FutureBuilder(
+            future: MahahasiswaService.getMahasiswa(),
+            builder: (context, AsyncSnapshot<List<Mahasiswa>> snapshot) {
+                if(snapshot.hasData)
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) => listTile(snapshot.data, context, index),
+                    );
+                else 
+                    return Container(
+                      child: Center(
+                         child: CircularProgressIndicator(),
+                      ),
+                    );
+            }
           ),
         ), 
         drawer: NavigationComponent(),

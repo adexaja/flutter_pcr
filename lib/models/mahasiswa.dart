@@ -1,10 +1,21 @@
 class Mahasiswa {
-  Mahasiswa(nim, nama, image){
+  Mahasiswa(nim, nama, jk, foto){
      this.nim = nim;
      this.nama = nama;
-     this.image = image;
+     this.jk = jk;
+     this.foto = foto;
   }
   String nama;
-  String nim;
-  String image;
+  int nim;
+  String foto;
+  String jk;
+
+  static fromJson(json){
+     return Mahasiswa(
+       json['NIM'],
+       json['nama'],
+       json['jk'],
+       json['foto']
+     );
+  }
 }
