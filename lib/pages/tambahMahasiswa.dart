@@ -62,14 +62,20 @@ class _TambahMahasiswaState extends State<TambahMahasiswa> {
             print("Nama Lengkap : ${namaController.text}");
             print("NIM : ${nimController.text}");
             print("Nama Lengkap : ${imageController.text}");
-            MahahasiswaService.saveMahasiswa(nimController.text, namaController.text, _jenisKelamin, _image.path).then((response){
-               // jika sukses atau gagal bisa dilihat dari response.data
-               // response.data itu adalah array output dari API
-
-               Navigator.push(context, MaterialPageRoute(
-                 builder: (context) => ListMahasiswa()
-               ));
-            });
+            try{
+              MahahasiswaService.saveMahasiswa(nimController.text, namaController.text, _jenisKelamin, _image.path).then((response){
+                // jika sukses atau gagal bisa dilihat dari response.data
+                // response.data itu adalah array output dari API
+                // input hanya simulasi, bukan benar benar input karena API merupakan demo saja
+                // silahkan kreasikan sesuai dengan studi kasus anda
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => ListMahasiswa()
+                ));
+              });
+            }catch(ex){
+               print(ex);
+            }
+           
           }
       },
     );
